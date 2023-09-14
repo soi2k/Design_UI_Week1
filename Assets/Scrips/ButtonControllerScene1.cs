@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonControllerScene1 : MonoBehaviour
 {
-    private string sceneName;
+    string sceneName;
+    string courseName;
     public GameObject canvasDialog;
     private System.Random randomActive = new System.Random();
     private void Awake()
@@ -22,7 +23,8 @@ public class ButtonControllerScene1 : MonoBehaviour
         if (randomactive == 0)
         {
             sceneName = "Scene2";
-            Debug.Log("Đã chọn khóa học Monkey ABC");
+            courseName = " Chào mừng đến với khóa học Monkey ABC ";
+            Debug.Log(courseName);
             SaveData();
             LoadNewScene();
         }
@@ -52,9 +54,12 @@ public class ButtonControllerScene1 : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+
+
     private void SaveData()
     {
-        PlayerPrefs.SetString("TextData", sceneName);
+        PlayerPrefs.SetString("TextDataScene1", courseName);
         PlayerPrefs.Save();
     }
     private void EnablePanel(bool blactive)

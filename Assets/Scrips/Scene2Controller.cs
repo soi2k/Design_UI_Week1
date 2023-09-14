@@ -11,7 +11,7 @@ public class Scene2Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textData = PlayerPrefs.GetString("TextData", "Data ");
+        textData = PlayerPrefs.GetString("TextDataScene1", "Data ");
         recievedfrScene1.text = textData;
     }
 
