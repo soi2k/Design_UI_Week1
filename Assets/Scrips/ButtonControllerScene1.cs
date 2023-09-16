@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ButtonControllerScene1 : MonoBehaviour
@@ -9,53 +10,40 @@ public class ButtonControllerScene1 : MonoBehaviour
     string courseName;
     public GameObject canvasDialog;
     private System.Random randomActive = new System.Random();
+    private int randomactive;
+    [SerializeField] private Text textCourseName;
     private void Awake()
     {
         
     }
     void Update()
     {
-
+        randomactive = randomActive.Next(2);
     }
     public void Onclick1()
     {
-        int randomactive = randomActive.Next(2);
         if (randomactive == 0)
-        {
+        {   
+            SoundController.ButtonSound.ButtonPlaySound("wing", 1);
             sceneName = "Scene2";
-            courseName = " Chào mừng đến với khóa học Monkey ABC ";
-            Debug.Log(courseName);
+            courseName = textCourseName.text;
             SaveData();
-            LoadNewScene();
+            StartCoroutine(DelayLoadScene());
         }
         else if(randomactive == 1)
         {
+            SoundController.ButtonSound.ButtonPlaySound("swoosh", 1);
             EnablePanel(true);
         }
       
     }
-    public void Onclick2()
-    {
-        Debug.Log("Đã chọn khóa học Monkey Stories");
-    }
-    public void Onclick3()
-    {
-        Debug.Log("Đã chọn khóa học Monkey Go");
-    }
-    public void Onclick4()
-    {
-        Debug.Log("Đã chọn khóa học Monkey Math");
-    }
+    
     public void OnClickDisablePanel()
     {
+        SoundController.ButtonSound.ButtonPlaySound("close", 0.7f);
         EnablePanel(false);
     }
-    public void LoadNewScene()
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-
+  
 
     private void SaveData()
     {
@@ -66,5 +54,11 @@ public class ButtonControllerScene1 : MonoBehaviour
     {
         canvasDialog.SetActive(blactive);
     }  
+
+    private IEnumerator DelayLoadScene()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(sceneName);
+    }
 }
 
