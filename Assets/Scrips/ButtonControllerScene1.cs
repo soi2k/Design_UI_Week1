@@ -12,6 +12,8 @@ public class ButtonControllerScene1 : MonoBehaviour
     private System.Random randomActive = new System.Random();
     private int randomactive;
     [SerializeField] private Text textCourseName;
+
+
     private void Awake()
     {
         

@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 public class Scene2Controller : MonoBehaviour
 {
     public Text recievedfrScene1 ;
-    string textData;
+    
     // Start is called before the first frame update
     void Start()
     {
-        textData = PlayerPrefs.GetString("TextDataScene1", "Data ");
-        recievedfrScene1.text = textData;
+        recievedfrScene1.text = PlayerPrefs.GetString("TextDataScene1"); ;
     }
 
     // Update is called once per frame
